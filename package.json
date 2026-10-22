@@ -1,0 +1,127 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "latex-palette",
+  "title": "LaTeX Palette",
+  "description": "Find LaTeX symbols, commands, environments, and packages using everyday English, then paste them instantly.",
+  "icon": "icon.png",
+  "author": "leand",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leanderriefel/latex-palette.git"
+  },
+  "homepage": "https://github.com/leanderriefel/latex-palette#readme",
+  "bugs": {
+    "url": "https://github.com/leanderriefel/latex-palette/issues"
+  },
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "categories": [
+    "Productivity",
+    "Developer Tools"
+  ],
+  "commands": [
+    {
+      "name": "search-latex",
+      "title": "Search LaTeX",
+      "subtitle": "LaTeX Palette",
+      "description": "Search symbols and snippets in plain English and paste LaTeX into your active app.",
+      "mode": "view",
+      "keywords": [
+        "math",
+        "symbols",
+        "equation",
+        "tex",
+        "latex",
+        "unicode",
+        "formula"
+      ]
+    }
+  ],
+  "preferences": [
+    {
+      "name": "viewMode",
+      "type": "dropdown",
+      "title": "Default View",
+      "description": "Browse rendered symbols in a grid or use a compact list with details.",
+      "required": false,
+      "default": "grid",
+      "data": [
+        {
+          "title": "Symbol Grid",
+          "value": "grid"
+        },
+        {
+          "title": "List with Details",
+          "value": "list"
+        }
+      ]
+    },
+    {
+      "name": "mathMode",
+      "type": "dropdown",
+      "title": "Math Delimiters",
+      "description": "Wrap math snippets when pasting. Text, complete environments, and package snippets keep their own formatting.",
+      "required": false,
+      "default": "raw",
+      "data": [
+        {
+          "title": "None — \\alpha",
+          "value": "raw"
+        },
+        {
+          "title": "Inline — $\\alpha$",
+          "value": "inline"
+        },
+        {
+          "title": "Display — \\[ \\alpha \\]",
+          "value": "display"
+        }
+      ]
+    },
+    {
+      "name": "rememberUsage",
+      "type": "checkbox",
+      "title": "Recent Picks",
+      "label": "Remember recently pasted and copied entries",
+      "description": "Keep up to 30 recent picks in Raycast's local storage.",
+      "required": false,
+      "default": true
+    }
+  ],
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build -e dist -o dist",
+    "install-extension": "ray build -e dist",
+    "bundle": "ray bundle --output latex-palette.rayext",
+    "lint": "eslint src && prettier --check src scripts \"*.json\" \"*.md\"",
+    "lint:fix": "eslint src --fix && prettier --write src scripts \"*.json\" \"*.md\"",
+    "lint:store": "ray lint",
+    "typecheck": "tsc --noEmit",
+    "assets": "node scripts/generate-assets.mjs",
+    "symbols": "node scripts/import-symbols.mjs"
+  },
+  "dependencies": {
+    "@raycast/api": "^2.9.0",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "eslint": "^9.0.0",
+    "mathjax-full": "3.2.2",
+    "prettier": "^3.0.0",
+    "sharp": "^0.35.5",
+    "typescript": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "overrides": {
+    "@xmldom/xmldom": "^0.9.12"
+  }
+}
